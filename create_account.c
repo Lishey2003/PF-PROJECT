@@ -16,19 +16,18 @@ int deposit_amount;
 };
 
 	
-void create_account(struct account array[i],FILE *file_pointer,char filename[]);
-void create_account(struct account array[i],FILE *file_pointer,char filename[]){
+void create_account(struct account array[i],FILE *file_pointer);
+void create_account(struct account array[i],FILE *file_pointer){
 
-while(1){
-    file_pointer = fopen(filename, "w");
+
+    file_pointer = fopen("Bank", "w");
     if (file_pointer == NULL) {
-        printf("Error in opening file: %s\n", filename);
+        printf("Error in opening file:");
     }
  else{
-    printf("\nFile opened: %s\n", filename);
-  	printf("\n******WELCOME******");
+    printf("\nFile opened:");
+  	printf("\n*****************WELCOME*******************");
   	printf("\nFor Creating Account Provide The Following Information :");
-  	 
  	array[i].account_number = account_no + i;
  	getchar();
  	puts("\nEnter Your Full Name : ");
@@ -55,27 +54,16 @@ while(1){
  	fprintf(file_pointer,"HOME ADDRESS : %s\n",array[i].address);
  	fprintf(file_pointer,"ACCOUNT TYPE : %s\n",array[i].account_type);
  	fprintf(file_pointer,"DEPOSIT AMOUNT : %d\n",array[i].deposit_amount);
- 	fclose(file_pointer);
- 	
- 	printf("****** Your Account Is Created Successfully********");
-
-
-  }
-  
- 	i++;
- }
+i++;
+}
 
 	return;
 } 
 
-
 int main(){
 	struct account array[i];
 	
-	char filename[50];
-    sprintf(filename, "account_%d.txt", account_no + i);
     FILE *file_pointer;
-   create_account(array,file_pointer,filename);
-
-	return 0;
+   create_account(array,file_pointer);
+   fclose(file_pointer);
 }
