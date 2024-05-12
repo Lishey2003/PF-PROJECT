@@ -25,45 +25,7 @@ void gotoxy();
 void welcome();
 
 void create_account(struct account array[], FILE *file_pointer);
-void create_account(struct account array[], FILE *file_pointer){
-	file_pointer = fopen("Bank.txt", "a");
-    if (file_pointer == NULL) {
-        printf("Error in opening file:");
-    } else {
-        printf("\nFile opened:");
-        printf("\n******WELCOME******");
-        printf("\nFor Creating Account Provide The Following Information :");
-        array[i].account_number = account_no + i;
-        getchar();
-        puts("\nEnter Your Full Name : ");
-        gets(array[i].name);
-        puts("Enter Your Date Of Birth");
-        gets(array[i].date_of_birth);
-        printf("Enter Your Age :");
-        scanf("%f", &array[i].age);
-        getchar();
-        puts("Enter Your Full Address : ");
-        gets(array[i].address);
-        printf("Enter Your Mobile Number :");
-        gets(array[i].phone_number);
-        puts("Enter Your Account_Type : ");
-        gets(array[i].account_type);
-        printf("Enter How Much Money You Want To Deposit :");
-        scanf("%d", &array[i].deposit_amount);
 
-        fprintf(file_pointer, "ACCOUNT NUMBER : %d\n", array[i].account_number);
-        fprintf(file_pointer, "NAME : %s\n", array[i].name);
-        fprintf(file_pointer, "DATE OF BIRTH : %s\n", array[i].date_of_birth);
-        fprintf(file_pointer, "AGE : %.1f\n", array[i].age);
-        fprintf(file_pointer, "HOME ADDRESS : %s\n", array[i].address);
-        fprintf(file_pointer, "MOBILE NO : %s\n", array[i].phone_number);
-        fprintf(file_pointer, "ACCOUNT TYPE : %s\n", array[i].account_type);
-        fprintf(file_pointer, "DEPOSIT AMOUNT : %d\n", array[i].deposit_amount);
-        fclose(file_pointer);
-    }
-    i++;
-    return;
-}
 
 int main(){
     loading_scrn();
@@ -71,6 +33,9 @@ int main(){
     FILE *file_pointer;
     file_pointer = fopen("Bank.txt", "w");
     fclose(file_pointer);
+    FILE *fptr;
+    fptr = fopen("Transaction history.txt", "w");
+    fclose(fptr);
     
     int choice, opt;
     welcome();
@@ -95,8 +60,7 @@ int main(){
                     printf("\t\t\t\t\t5. Transaction History:\n");
                     printf("\t\t\t\t\t6. Delete Account:\n");
                     printf("\t\t\t\t\t7. Currency Converter?\n");
-		    printf("\t\t\t\t\t8. Loan Option:\n");
-                    printf("\t\t\t\t\t9. Exit:\n");
+                    printf("\t\t\t\t\t8. Exit:\n");
                     printf("\n");
                     printf("\t\t\t\t\t");
 
@@ -134,10 +98,6 @@ int main(){
                             break;
                         }
                         case 8:{
-                            loading_scrn();
-                            break;
-                        }
-			    case 9:{
                             loading_scrn();
                             break;
                         }
@@ -190,5 +150,44 @@ void gotoxy(int x, int y){
 
 void welcome(){
     printf("\n\n\n\n\n\n\t\t\t\t\tWELCOME TO ATF BANK:\n");
+}
+void create_account(struct account array[], FILE *file_pointer){
+	file_pointer = fopen("Bank.txt", "a");
+    if (file_pointer == NULL) {
+        printf("Error in opening file:");
+    } else {
+        printf("\nFile opened:");
+        printf("\n******WELCOME******");
+        printf("\nFor Creating Account Provide The Following Information :");
+        array[i].account_number = account_no + i;
+        getchar();
+        puts("\nEnter Your Full Name : ");
+        gets(array[i].name);
+        puts("Enter Your Date Of Birth");
+        gets(array[i].date_of_birth);
+        printf("Enter Your Age :");
+        scanf("%f", &array[i].age);
+        getchar();
+        puts("Enter Your Full Address : ");
+        gets(array[i].address);
+        printf("Enter Your Mobile Number :");
+        gets(array[i].phone_number);
+        puts("Enter Your Account_Type : ");
+        gets(array[i].account_type);
+        printf("Enter How Much Money You Want To Deposit :");
+        scanf("%d", &array[i].deposit_amount);
+
+        fprintf(file_pointer, "ACCOUNT NUMBER : %d\n", array[i].account_number);
+        fprintf(file_pointer, "NAME : %s\n", array[i].name);
+        fprintf(file_pointer, "DATE OF BIRTH : %s\n", array[i].date_of_birth);
+        fprintf(file_pointer, "AGE : %.1f\n", array[i].age);
+        fprintf(file_pointer, "HOME ADDRESS : %s\n", array[i].address);
+        fprintf(file_pointer, "MOBILE NO : %s\n", array[i].phone_number);
+        fprintf(file_pointer, "ACCOUNT TYPE : %s\n", array[i].account_type);
+        fprintf(file_pointer, "DEPOSIT AMOUNT : %d\n", array[i].deposit_amount);
+        fclose(file_pointer);
+    }
+    i++;
+    return;
 }
 
