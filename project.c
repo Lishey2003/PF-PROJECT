@@ -67,12 +67,12 @@ void create_account(struct account array[], FILE *file_pointer){
 
 int main(){
     loading_scrn();
-    struct account array[1]; // Assuming only one account is created at a time
+    struct account array[i]; 
     FILE *file_pointer;
     file_pointer = fopen("Bank.txt", "w");
     fclose(file_pointer);
+    
     int choice, opt;
-
     welcome();
     sleep(2);
     label1:{
