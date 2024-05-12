@@ -95,7 +95,8 @@ int main(){
                     printf("\t\t\t\t\t5. Transaction History:\n");
                     printf("\t\t\t\t\t6. Delete Account:\n");
                     printf("\t\t\t\t\t7. Currency Converter?\n");
-                    printf("\t\t\t\t\t8. Exit:\n");
+		    printf("\t\t\t\t\t8. Loan Option:\n");
+                    printf("\t\t\t\t\t9. Exit:\n");
                     printf("\n");
                     printf("\t\t\t\t\t");
 
@@ -133,6 +134,10 @@ int main(){
                             break;
                         }
                         case 8:{
+                            loading_scrn();
+                            break;
+                        }
+			    case 9:{
                             loading_scrn();
                             break;
                         }
