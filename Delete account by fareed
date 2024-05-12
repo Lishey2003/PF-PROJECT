@@ -1,1 +1,65 @@
+#include<stdio.h>
 
+struct account {
+    int account_number;
+    char name[50];
+    char date_of_birth[50];
+    float age;
+    char address[50];
+    char phone_number[12];
+    char account_type[50];
+    int deposit_amount;
+};
+
+int main(){
+    struct account array[100];
+    int account_to_delete=213450;
+    delete_account(account_to_delete);
+
+    return 0;
+}
+
+void delete_account(int account_number){
+    FILE *tempo;
+    FILE *fp;
+    struct account temp_array[100];
+    int temp_i=0;
+
+    fp=fopen("Bank.txt","r");
+    tempo=fopen("temp.txt","w");
+
+    if(fp==NULL||tempo==NULL){
+        printf("Error in opening file:\n");
+        return;
+    }
+
+    while(fscanf(fp,"ACCOUNT NUMBER : %d\n",&temp_array[temp_i].account_number)!=EOF){
+        fscanf(fp,"NAME : %[^\n]\n",temp_array[temp_i].name);
+        fscanf(fp,"DATE OF BIRTH : %[^\n]\n", temp_array[temp_i].date_of_birth);
+        fscanf(fp,"AGE : %f\n", &temp_array[temp_i].age);
+        fscanf(fp,"HOME ADDRESS : %[^\n]\n", temp_array[temp_i].address);
+        fscanf(fp,"MOBILE NO : %[^\n]\n", temp_array[temp_i].phone_number);
+        fscanf(fp,"ACCOUNT TYPE : %[^\n]\n", temp_array[temp_i].account_type);
+        fscanf(fp,"DEPOSIT AMOUNT : %d\n", &temp_array[temp_i].deposit_amount);
+        if (temp_array[temp_i].account_number!=account_number){
+            fprintf(tempo,"ACCOUNT NUMBER : %d\n",temp_array[temp_i].account_number);
+            fprintf(tempo,"NAME : %s\n",temp_array[temp_i].name);
+            fprintf(tempo,"DATE OF BIRTH : %s\n",temp_array[temp_i].date_of_birth);
+            fprintf(tempo,"AGE : %.1f\n",temp_array[temp_i].age);
+            fprintf(tempo,"HOME ADDRESS : %s\n",temp_array[temp_i].address);
+            fprintf(tempo,"MOBILE NO : %s\n",temp_array[temp_i].phone_number);
+            fprintf(tempo,"ACCOUNT TYPE : %s\n",temp_array[temp_i].account_type);
+            fprintf(tempo,"DEPOSIT AMOUNT : %d\n",temp_array[temp_i].deposit_amount);
+        }
+
+        temp_i++;
+    }
+
+    fclose(fp);
+    fclose(tempo);
+
+    remove("Bank.txt");
+    rename("temp.txt","Bank.txt");
+
+    printf("Account with number %d deleted successfully.\n",account_number);
+}
