@@ -20,7 +20,7 @@ void create_account(struct account array[],FILE *file_pointer);
 void create_account(struct account array[],FILE *file_pointer){
 
 
-    file_pointer = fopen("Bank.txt", "w");
+    file_pointer = fopen("Bank.txt", "a");
     if (file_pointer == NULL) {
         printf("Error in opening file:");
     }
@@ -65,5 +65,8 @@ int main(){
 	struct account array[i];
 	
     FILE *file_pointer;
+    file_pointer = fopen("Bank.txt", "w");
+    fclose(file_pointer);
+    
    create_account(array,file_pointer);
 }
