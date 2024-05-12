@@ -26,7 +26,7 @@ void create_account(struct account array[i],FILE *file_pointer){
     }
  else{
     printf("\nFile opened:");
-  	printf("\n*****************WELCOME*******************");
+  	printf("\n******WELCOME******");
   	printf("\nFor Creating Account Provide The Following Information :");
  	array[i].account_number = account_no + i;
  	getchar();
@@ -54,9 +54,9 @@ void create_account(struct account array[i],FILE *file_pointer){
  	fprintf(file_pointer,"HOME ADDRESS : %s\n",array[i].address);
  	fprintf(file_pointer,"ACCOUNT TYPE : %s\n",array[i].account_type);
  	fprintf(file_pointer,"DEPOSIT AMOUNT : %d\n",array[i].deposit_amount);
-i++;
+ fclose (file_pointer);
 }
-
+i++;
 	return;
 } 
 
@@ -65,5 +65,4 @@ int main(){
 	
     FILE *file_pointer;
    create_account(array,file_pointer);
-   fclose(file_pointer);
 }
