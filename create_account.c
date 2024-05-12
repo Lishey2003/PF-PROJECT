@@ -16,11 +16,11 @@ int deposit_amount;
 };
 
 	
-void create_account(struct account array[i],FILE *file_pointer);
-void create_account(struct account array[i],FILE *file_pointer){
+void create_account(struct account array[],FILE *file_pointer);
+void create_account(struct account array[],FILE *file_pointer){
 
 
-    file_pointer = fopen("Bank", "w");
+    file_pointer = fopen("Bank.txt", "w");
     if (file_pointer == NULL) {
         printf("Error in opening file:");
     }
