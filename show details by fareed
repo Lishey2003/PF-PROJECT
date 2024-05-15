@@ -1,0 +1,48 @@
+void show_details(int account_number);
+
+void show_details(int account_number){
+    FILE *fp;
+    fp=fopen("Bank.txt","r");
+
+    if(fp==NULL){
+        printf("Error opening file.");
+        return;
+    }
+
+    int found=0;
+    struct account acc;
+
+    while(fscanf(fp,"ACCOUNT NUMBER : %d\n",&acc.account_number)!=EOF){
+        fscanf(fp,"NAME : %[^\n]\n",acc.name);
+        fscanf(fp,"DATE OF BIRTH : %[^\n]\n",acc.date_of_birth);
+        fscanf(fp,"AGE : %f\n",&acc.age);
+        fscanf(fp,"HOME ADDRESS : %[^\n]\n",acc.address);
+        fscanf(fp,"MOBILE NO : %[^\n]\n",acc.phone_number);
+        fscanf(fp,"ACCOUNT TYPE : %[^\n]\n",acc.account_type);
+        fscanf(fp,"DEPOSIT AMOUNT : %d\n",&acc.deposit_amount);
+        fscanf(fp,"\n");
+
+        if(acc.account_number==account_number){
+            found=1;
+            printf("The Account Details Are:\n\n");
+            printf("\nAccount Number: %d\n",acc.account_number);
+            printf("Name: %s\n",acc.name);
+            printf("Date of Birth: %s\n",acc.date_of_birth);
+            printf("Age: %.1f\n",acc.age);
+            printf("Address: %s\n",acc.address);
+            printf("Phone Number: %s\n",acc.phone_number);
+            printf("Account Type: %s\n",acc.account_type);
+            printf("Deposit Amount: %d\n",acc.deposit_amount);
+            break;
+        }
+    }
+
+    if(!found){
+        printf("Account not found.\n");
+    }
+
+    fclose(fp);
+}
+
+
+
